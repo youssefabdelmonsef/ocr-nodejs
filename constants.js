@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-  OCR_FILE_NAME: 'ocr2.txt',
+  OCR_FILE_NAME: 'ocr.txt',
   NUMBER_IN_OCR: {
     ZERO: {
       upper: [ ' ', '_', ' ' ],

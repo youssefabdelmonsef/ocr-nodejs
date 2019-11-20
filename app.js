@@ -5,8 +5,11 @@ var constants = require('./constants');
 const fileName = constants.OCR_FILE_NAME;
 let data;
 let chunks = [];
+let chunksSplited = [];
 let charPerLine = 0;
 let charsToNumber = [];
+let finalNumber;
+
 /** fs */
 // async no error
 fs.readdir('./', function(err, files){
@@ -53,6 +56,22 @@ function getCharacter() {
     if (e === '\n') {
         chunks.push(e);
       }
+  });
+
+  let startingIndex = 0;
+  chunks.forEach( (char, index) => {
+
+    if( (char === '\n' && chunks[index-1] === '\n') ) {
+      console.log('innnnn')
+      chunksSplited.push(chunks.slice(startingIndex, index-1));
+      startingIndex = index+1;
+      console.log('chunksSplited: ', chunksSplited)
+    }
+    if ( index === chunks.length-1 ) {
+      chunksSplited.push(chunks.slice(startingIndex, index+1));
+      console.log('chunksSplited: latesttttttttt', chunksSplited)
+
+    }
   })
   console.log(3, chunks);
   
@@ -60,23 +79,35 @@ function getCharacter() {
 }
 
   function getCharPerLine () {
-    let i=0;
-    while(chunks[i] !== '\n'){
-      i++;
-    }
-    charPerLine = i+1;
-    mapChar();
+
+    chunksSplited.forEach((currentChunk, index) => {
+      let i = 0;
+      while (currentChunk[i] !== '\n') {
+        i++;
+      }
+      charPerLine = i + 1;
+      mapChar(currentChunk);
+
+      /** add new line */
+      // console.log(3333333, index)
+      // if ( index === chunksSplited.length-1 ) {
+        // console.log(222222)
+
+        finalNumber = finalNumber + 'shshsh ';
+      // }
+    })
+    
   }
 
-  function mapChar() {
+  function mapChar(currentChunk) {
     let i=0;
     while (i<charPerLine-1) {
       console.log('Number in Sticks Mode');
-      console.log(chunks[i]);
-      console.log(chunks[i+charPerLine]);
-      console.log(chunks[i+charPerLine+charPerLine]);
+      console.log(currentChunk[i]);
+      console.log(currentChunk[i+charPerLine]);
+      console.log(currentChunk[i+charPerLine+charPerLine]);
       
-      compareAndConvert(chunks[i], chunks[i+charPerLine], chunks[i+charPerLine+charPerLine]);
+      compareAndConvert(currentChunk[i], currentChunk[i+charPerLine], currentChunk[i+charPerLine+charPerLine]);
       i++;
     }
   }
@@ -154,7 +185,7 @@ function getCharacter() {
   }
 
   function printNumber() {
-    let finalNumber = charsToNumber.join();
+    finalNumber = charsToNumber.join();
     /** regex to remove commas */
     finalNumber = finalNumber.replace(/,/g, ''); 
    
