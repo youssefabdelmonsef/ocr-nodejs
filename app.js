@@ -62,39 +62,28 @@ function getCharacter() {
   chunks.forEach( (char, index) => {
 
     if( (char === '\n' && chunks[index-1] === '\n') ) {
-      console.log('innnnn')
       chunksSplited.push(chunks.slice(startingIndex, index-1));
       startingIndex = index+1;
-      console.log('chunksSplited: ', chunksSplited)
     }
     if ( index === chunks.length-1 ) {
       chunksSplited.push(chunks.slice(startingIndex, index+1));
-      console.log('chunksSplited: latesttttttttt', chunksSplited)
-
     }
   })
-  console.log(3, chunks);
   
   getCharPerLine ()
 }
 
   function getCharPerLine () {
-
     chunksSplited.forEach((currentChunk, index) => {
       let i = 0;
       while (currentChunk[i] !== '\n') {
         i++;
       }
       charPerLine = i + 1;
+
+      
       mapChar(currentChunk);
 
-      /** add new line */
-      // console.log(3333333, index)
-      // if ( index === chunksSplited.length-1 ) {
-        // console.log(222222)
-
-        finalNumber = finalNumber + 'shshsh ';
-      // }
     })
     
   }
@@ -102,18 +91,13 @@ function getCharacter() {
   function mapChar(currentChunk) {
     let i=0;
     while (i<charPerLine-1) {
-      console.log('Number in Sticks Mode');
-      console.log(currentChunk[i]);
-      console.log(currentChunk[i+charPerLine]);
-      console.log(currentChunk[i+charPerLine+charPerLine]);
       
-      compareAndConvert(currentChunk[i], currentChunk[i+charPerLine], currentChunk[i+charPerLine+charPerLine]);
+      compareAndConvert(currentChunk[i], currentChunk[i+charPerLine], currentChunk[i+charPerLine+charPerLine], charPerLine, i);
       i++;
     }
   }
 
-    function compareAndConvert(firstChar, secondChar, thirdChar) {
-      // console.log(firstChar, secondChar, thirdChar);
+    function compareAndConvert(firstChar, secondChar, thirdChar, charPerLine, i) {
       let arrayToString;
 
       /** check to prevent any data errors */
@@ -178,10 +162,12 @@ function getCharacter() {
         break;
 
         default: currentNumber = ' errorInData ';
-
+        
       }
 
-      charsToNumber.push(currentNumber);
+      const addNewLine = (charPerLine-2 === i) ? '\n' : '';
+     
+      charsToNumber.push(currentNumber+addNewLine);
   }
 
   function printNumber() {
