@@ -98,6 +98,15 @@ function getCharacter() {
       let arrayToString = firstChar.join()+secondChar.join()+thirdChar.join();
       let zero = constants.NUMBER_IN_OCR.ZERO.upper.join()+constants.NUMBER_IN_OCR.ZERO.mid.join()+constants.NUMBER_IN_OCR.ZERO.lower.join();
       let one = constants.NUMBER_IN_OCR.ONE.upper.join()+constants.NUMBER_IN_OCR.ONE.mid.join()+constants.NUMBER_IN_OCR.ONE.lower.join();
+      let two = constants.NUMBER_IN_OCR.TWO.upper.join()+constants.NUMBER_IN_OCR.TWO.mid.join()+constants.NUMBER_IN_OCR.TWO.lower.join();
+      let three = constants.NUMBER_IN_OCR.THREE.upper.join()+constants.NUMBER_IN_OCR.THREE.mid.join()+constants.NUMBER_IN_OCR.THREE.lower.join();
+      let four = constants.NUMBER_IN_OCR.FOUR.upper.join()+constants.NUMBER_IN_OCR.FOUR.mid.join()+constants.NUMBER_IN_OCR.FOUR.lower.join();
+      let five = constants.NUMBER_IN_OCR.FIVE.upper.join()+constants.NUMBER_IN_OCR.FIVE.mid.join()+constants.NUMBER_IN_OCR.FIVE.lower.join();
+      let six = constants.NUMBER_IN_OCR.SIX.upper.join()+constants.NUMBER_IN_OCR.SIX.mid.join()+constants.NUMBER_IN_OCR.SIX.lower.join();
+      let seven = constants.NUMBER_IN_OCR.SEVEN.upper.join()+constants.NUMBER_IN_OCR.SEVEN.mid.join()+constants.NUMBER_IN_OCR.SEVEN.lower.join();
+      let eight = constants.NUMBER_IN_OCR.EIGHT.upper.join()+constants.NUMBER_IN_OCR.EIGHT.mid.join()+constants.NUMBER_IN_OCR.EIGHT.lower.join();
+      let nine = constants.NUMBER_IN_OCR.NINE.upper.join()+constants.NUMBER_IN_OCR.NINE.mid.join()+constants.NUMBER_IN_OCR.NINE.lower.join();
+      
       let currentNumber;
 
       switch (arrayToString) {
@@ -109,6 +118,38 @@ function getCharacter() {
 
         case one: 
         currentNumber = 1;
+        break;
+
+        case two: 
+        currentNumber = 2;
+        break;
+
+        case three: 
+        currentNumber = 3;
+        break;
+
+        case four: 
+        currentNumber = 4;
+        break;
+
+        case five: 
+        currentNumber = 5;
+        break;
+
+        case six: 
+        currentNumber = 6;
+        break;
+
+        case seven: 
+        currentNumber = 7;
+        break;
+
+        case eight: 
+        currentNumber = 8;
+        break;
+
+        case nine: 
+        currentNumber = 9;
         break;
 
         default: console.log('The Above number is: ', currentNumber);
